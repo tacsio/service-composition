@@ -7,8 +7,6 @@
 
 package buscaCEP_pkg;
 
-import java.rmi.RemoteException;
-
 import buscaCEP_pkg.endereco.Endereco;
 import buscaCEP_pkg.repositorio.RepositorioEndereco;
 
@@ -26,13 +24,4 @@ public class BuscaCEPSoapBindingImpl implements buscaCEP_pkg.BuscaCEP{
     	return "CEP INVÁLIDO";
     }
     
-    
-    public static void main(String[] args) {
-		try {
-			System.out.println(new BuscaCEPSoapBindingImpl().buscaCEP("52041-000"));
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 }
