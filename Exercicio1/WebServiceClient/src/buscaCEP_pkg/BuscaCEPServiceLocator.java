@@ -22,7 +22,7 @@ public class BuscaCEPServiceLocator extends org.apache.axis.client.Service imple
     }
 
     // Use to get a proxy class for BuscaCEP
-    private java.lang.String BuscaCEP_address = "http://localhost:8080/WebServiceBuscaCep/services/BuscaCEP";
+    private java.lang.String BuscaCEP_address = "http://172.20.4.16:8080/WebServiceBuscaCep/services/BuscaCEP";
 
     public java.lang.String getBuscaCEPAddress() {
         return BuscaCEP_address;
