@@ -22,7 +22,7 @@ public class ListaProdutosServiceLocator extends org.apache.axis.client.Service 
     }
 
     // Use to get a proxy class for ListaProdutos
-    private java.lang.String ListaProdutos_address = "http://172.20.4.16:8080/WebServiceListarProdutos/services/ListaProdutos";
+    private java.lang.String ListaProdutos_address = "http://localhost:8080/WebServiceListarProdutos/services/ListaProdutos";
 
     public java.lang.String getListaProdutosAddress() {
         return ListaProdutos_address;

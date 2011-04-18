@@ -11,23 +11,63 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div>
+	<%
+		
+		String cep = request.getParameter("cep");
+		beanBuscaCep.buscarCep(cep);
+	%>
+		<br>
 		<table>
 			<tr>
-				<td>CEP:</td>
-				<td>Logradouro</td>
+				<td><label>Total: </label></td>
+				<td><label><%=beanBuscaCep.getTotalCompras(request) %></label></td>
 			</tr>
 			<tr>
-				<td><input id="cep" type="text" /><input type="button" value="Buscar" onclick="<%=beanBuscaCep.buscarCep("54100-570")%>"/></td>
-				<%
-					if(beanBuscaCep.getBairro() != ""){
-						%>
-						<td><input type="text" value="<%= beanBuscaCep.getLogradouro()%>"/></td>
-						<%						
-					}
-				%>
+				<td><label>Cidade: </label></td>
+				<td><input type="text" name="campoCidade" value="<%=beanBuscaCep.getCidade() %>"/></td>
+			</tr>
+			<tr>
+				<td><label>Bairro: </label></td>
+				<td><input type="text" name="campoBairro" value="<%=beanBuscaCep.getBairro() %>"/></td>
+			</tr>
+			
+			<tr>
+				<td><label>Logradouro: </label></td>
+				<td><input type="text" name="campoRua" value="<%=beanBuscaCep.getLogradouro() %>" /></td>
 			</tr>
 		</table>
-	</div>
+		
+		<br>
+
+<%
+	beanBuscaCep.calculaFrete(request);
+%>		
+		<table>
+			<%
+				if(beanBuscaCep.msg.equals("")){
+			%>
+			<tr>
+				<td><label>Frete: </label></td>
+				<td><label>R$<%=beanBuscaCep.getValorFrete()%></label></td>
+			</tr>
+			<tr>
+				<td><%=beanBuscaCep.getDiasEntrega() %>
+			</tr>
+			<%
+				}else {
+			%>
+			<tr>
+				<td>
+					<%=beanBuscaCep.msg %>
+				</td>
+			</tr>
+			<%
+				}	
+			%>
+			<tr>
+				<td><label>Total da compra: </label></td>
+				<td><label>R$<%=beanBuscaCep.getTotalCompras()%>0</label></td>
+			</tr>
+		</table>
 </body>
 </html>

@@ -7,7 +7,7 @@
 <title>WSCompras</title>
 </head>
 <body>
-	<form id="formIndex" method="get" action="TelaListarProdutos.jsp">
+	<form id="formIndex" method="post" action="TelaListarProdutos.jsp">
 		<div style="text-align:center; margin-top:50px">
 			<img alt="Clique já" src="../resource/compre.gif">
 			<input type="submit" value="Listar Produtos" />
