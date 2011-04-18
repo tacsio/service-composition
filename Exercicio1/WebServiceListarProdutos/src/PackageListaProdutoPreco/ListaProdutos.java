@@ -19,7 +19,7 @@ public class ListaProdutos {
 		try {
 		
 			List<Produto> listaTemp = new ArrayList<Produto>();
-			arquivo = new FileReader("C:\\Temp\\distribuidos\\Exercicio1\\WebServiceListarProdutos\\ProdutosLoja.txt");
+			arquivo = new FileReader("C:\\Users\\Família\\Desktop\\webservice\\distribuidos\\Exercicio1\\WebServiceListarProdutos\\ProdutosLoja.txt");
 			
 			
 			BufferedReader in = new BufferedReader(arquivo);

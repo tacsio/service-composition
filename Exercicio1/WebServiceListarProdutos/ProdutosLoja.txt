@@ -1,6 +1,6 @@
-Notebook 15000 3 30 7 20 30
+Notebook 1500 3 30 7 20 30
 HD 100 1 10 3 20 10
-Mouse 20 0.2 5 3 4 3
+Mouse 20 0.6 5 3 4 3
 Monitor 300 1.5 40 30 30 35
-Carregador 100 0.5 10 4 3 15
+Carregador 100 5 10 4 5 15
 CPU 800 2 20 40 50 35
