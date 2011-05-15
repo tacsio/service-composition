@@ -79,7 +79,7 @@
 
       <wsdl:port binding="impl:BuscaCEPSoapBinding" name="BuscaCEP">
 
-         <wsdlsoap:address location="http://localhost:8080/WebServiceBuscaCep/services/BuscaCEP"/>
+         <wsdlsoap:address location="http://192.168.1.101:8080/WebServiceBuscaCep/services/BuscaCEP"/>
 
       </wsdl:port>
 

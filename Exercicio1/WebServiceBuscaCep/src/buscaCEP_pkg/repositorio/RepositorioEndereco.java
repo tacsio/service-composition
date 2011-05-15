@@ -21,7 +21,7 @@ public class RepositorioEndereco {
 
 		try {
 			Class.forName("org.sqlite.JDBC");
-			connection = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\Família\\Desktop\\webservice\\distribuidos\\Exercicio1\\WebServiceBuscaCep\\WebContent\\db\\database.db");
+			connection = DriverManager.getConnection("jdbc:sqlite:/home/tacsio/Projects/distribuidos/Exercicio1/WebServiceBuscaCep/WebContent/db/database.db");
 
 			query.append("select cidade, tipo, logradouro, bairro, cep ");
 			query.append("from endereco ");
