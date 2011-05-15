@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.taryatechnologies.com/ws" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.taryatechnologies.com/ws" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.taryatechnologies.com/ws">
+      <s:element name="GetMD5HashValue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMD5HashValueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMD5HashValueResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSHA1HashValue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSHA1HashValueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSHA1HashValueResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetMD5HashValueSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMD5HashValue" />
+  </wsdl:message>
+  <wsdl:message name="GetMD5HashValueSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMD5HashValueResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSHA1HashValueSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSHA1HashValue" />
+  </wsdl:message>
+  <wsdl:message name="GetSHA1HashValueSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSHA1HashValueResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMD5HashValueHttpGetIn">
+    <wsdl:part name="strText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMD5HashValueHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSHA1HashValueHttpGetIn">
+    <wsdl:part name="strText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSHA1HashValueHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMD5HashValueHttpPostIn">
+    <wsdl:part name="strText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMD5HashValueHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSHA1HashValueHttpPostIn">
+    <wsdl:part name="strText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSHA1HashValueHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="HashValueSoap">
+    <wsdl:operation name="GetMD5HashValue">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Computes MD5 hash value(128 bits)</wsdl:documentation>
+      <wsdl:input message="tns:GetMD5HashValueSoapIn" />
+      <wsdl:output message="tns:GetMD5HashValueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSHA1HashValue">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Computes SHA1 hash value(160 bits)</wsdl:documentation>
+      <wsdl:input message="tns:GetSHA1HashValueSoapIn" />
+      <wsdl:output message="tns:GetSHA1HashValueSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="HashValueHttpGet">
+    <wsdl:operation name="GetMD5HashValue">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Computes MD5 hash value(128 bits)</wsdl:documentation>
+      <wsdl:input message="tns:GetMD5HashValueHttpGetIn" />
+      <wsdl:output message="tns:GetMD5HashValueHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSHA1HashValue">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Computes SHA1 hash value(160 bits)</wsdl:documentation>
+      <wsdl:input message="tns:GetSHA1HashValueHttpGetIn" />
+      <wsdl:output message="tns:GetSHA1HashValueHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="HashValueHttpPost">
+    <wsdl:operation name="GetMD5HashValue">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Computes MD5 hash value(128 bits)</wsdl:documentation>
+      <wsdl:input message="tns:GetMD5HashValueHttpPostIn" />
+      <wsdl:output message="tns:GetMD5HashValueHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSHA1HashValue">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Computes SHA1 hash value(160 bits)</wsdl:documentation>
+      <wsdl:input message="tns:GetSHA1HashValueHttpPostIn" />
+      <wsdl:output message="tns:GetSHA1HashValueHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HashValueSoap" type="tns:HashValueSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetMD5HashValue">
+      <soap:operation soapAction="http://www.taryatechnologies.com/ws/GetMD5HashValue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSHA1HashValue">
+      <soap:operation soapAction="http://www.taryatechnologies.com/ws/GetSHA1HashValue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="HashValueSoap12" type="tns:HashValueSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetMD5HashValue">
+      <soap12:operation soapAction="http://www.taryatechnologies.com/ws/GetMD5HashValue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSHA1HashValue">
+      <soap12:operation soapAction="http://www.taryatechnologies.com/ws/GetSHA1HashValue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="HashValueHttpGet" type="tns:HashValueHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetMD5HashValue">
+      <http:operation location="/GetMD5HashValue" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSHA1HashValue">
+      <http:operation location="/GetSHA1HashValue" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="HashValueHttpPost" type="tns:HashValueHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetMD5HashValue">
+      <http:operation location="/GetMD5HashValue" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSHA1HashValue">
+      <http:operation location="/GetSHA1HashValue" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HashValue">
+    <wsdl:port name="HashValueSoap" binding="tns:HashValueSoap">
+      <soap:address location="http://www.tarya.co.uk/ws/HashValues.asmx" />
+    </wsdl:port>
+    <wsdl:port name="HashValueSoap12" binding="tns:HashValueSoap12">
+      <soap12:address location="http://www.tarya.co.uk/ws/HashValues.asmx" />
+    </wsdl:port>
+    <wsdl:port name="HashValueHttpGet" binding="tns:HashValueHttpGet">
+      <http:address location="http://www.tarya.co.uk/ws/HashValues.asmx" />
+    </wsdl:port>
+    <wsdl:port name="HashValueHttpPost" binding="tns:HashValueHttpPost">
+      <http:address location="http://www.tarya.co.uk/ws/HashValues.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+This is the seekda cache of the WSDL definition available at http://mathertel.de/AJAXEngine/S03_AJAXControls/ValidatorDemo.asmx?WSDL.
+seekdas cache is a snapshot that we took as we crawled the Web.
+The service may have changed since the last crawl.
+seekda is neither affiliated with the authors of this service nor responsible for its advertised functionality.
+
+-->
+
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.mathertel.de/ValidatorDemo/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.mathertel.de/ValidatorDemo/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">WebService to validate e-mail adresses.</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.mathertel.de/ValidatorDemo/">
+      <s:element name="ValidateEMail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="emailAddress" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateEMailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ValidateEMailResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="boolean" type="s:boolean" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ValidateEMailSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateEMail" />
+  </wsdl:message>
+  <wsdl:message name="ValidateEMailSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateEMailResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateEMailHttpGetIn">
+    <wsdl:part name="emailAddress" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ValidateEMailHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:portType name="ValidatorDemoSoap">
+    <wsdl:operation name="ValidateEMail">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Validate a e-mail address by checking the hostname.</wsdl:documentation>
+      <wsdl:input message="tns:ValidateEMailSoapIn" />
+      <wsdl:output message="tns:ValidateEMailSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ValidatorDemoHttpGet">
+    <wsdl:operation name="ValidateEMail">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Validate a e-mail address by checking the hostname.</wsdl:documentation>
+      <wsdl:input message="tns:ValidateEMailHttpGetIn" />
+      <wsdl:output message="tns:ValidateEMailHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ValidatorDemoSoap" type="tns:ValidatorDemoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ValidateEMail">
+      <soap:operation soapAction="http://www.mathertel.de/ValidatorDemo/ValidateEMail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ValidatorDemoSoap12" type="tns:ValidatorDemoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ValidateEMail">
+      <soap12:operation soapAction="http://www.mathertel.de/ValidatorDemo/ValidateEMail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ValidatorDemoHttpGet" type="tns:ValidatorDemoHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ValidateEMail">
+      <http:operation location="/ValidateEMail" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ValidatorDemo">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">WebService to validate e-mail adresses.</wsdl:documentation>
+    <wsdl:port name="ValidatorDemoSoap" binding="tns:ValidatorDemoSoap">
+      <soap:address location="http://mathertel.de/AJAXEngine/S03_AJAXControls/ValidatorDemo.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ValidatorDemoSoap12" binding="tns:ValidatorDemoSoap12">
+      <soap12:address location="http://mathertel.de/AJAXEngine/S03_AJAXControls/ValidatorDemo.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ValidatorDemoHttpGet" binding="tns:ValidatorDemoHttpGet">
+      <http:address location="http://mathertel.de/AJAXEngine/S03_AJAXControls/ValidatorDemo.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

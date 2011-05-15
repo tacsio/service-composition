@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy xmlns="http://www.apache.org/ode/schemas/dd/2007/03" xmlns:composicao="http://composicao.localhost" xmlns:HashValue="http://www.taryatechnologies.com/ws" xmlns:mail="http://mail" xmlns:main.localhost="http://main.localhost">
+  <process name="main.localhost:main">
+    <active>true</active>
+	<retired>false</retired>
+	<process-events generate="all"/>
+	<provide partnerLink="client">
+	  <service name="main.localhost:main" port="mainPort"/>
+	</provide>
+	<invoke partnerLink="composicao">
+	  <service name="composicao:composicao" port="composicaoPort"/>
+	</invoke>
+	<invoke partnerLink="hash">
+	  <service name="HashValue:HashValue" port="HashValueSoap"/>
+	</invoke>
+	<invoke partnerLink="senser">
+	  <service name="mail:MailSenderService" port="MailSender"/>
+	</invoke>
+  </process>
+</deploy>
