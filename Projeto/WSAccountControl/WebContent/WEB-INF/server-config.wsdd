@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -42,12 +42,6 @@
   <ns1:parameter name="wsdlServiceElement" value="WSAccountControlService"/>
   <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns6:Cliente" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.cliente.Cliente" xmlns:ns6="http://cliente.com"/>
  </ns1:service>
- <ns1:service name="AdminService" provider="java:MSG">
-  <ns1:parameter name="allowedMethods" value="AdminService"/>
-  <ns1:parameter name="enableRemoteAdmin" value="false"/>
-  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
-  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
- </ns1:service>
  <ns1:service name="Fachada" provider="java:RPC" style="wrapped" use="literal">
   <ns1:operation name="consultarClienteLogin" qname="ns7:consultarClienteLogin" returnQName="ns7:consultarClienteLoginReturn" returnType="ns8:Cliente" soapAction="" xmlns:ns7="http://fachada.com" xmlns:ns8="http://cliente.com">
    <ns1:parameter qname="ns7:login" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
@@ -59,14 +53,20 @@
    <ns1:parameter qname="ns11:login" type="xsd:string"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="consultarClienteLogin existeLogin cadastrarCliente"/>
-  <ns1:parameter name="wsdlPortType" value="Fachada"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
-  <ns1:parameter name="schemaQualified" value="http://cliente.com,http://fachada.com"/>
-  <ns1:parameter name="wsdlServicePort" value="Fachada"/>
+  <ns1:parameter name="wsdlPortType" value="Fachada"/>
   <ns1:parameter name="className" value="com.fachada.Fachada"/>
+  <ns1:parameter name="wsdlServicePort" value="Fachada"/>
+  <ns1:parameter name="schemaQualified" value="http://cliente.com,http://fachada.com"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://fachada.com"/>
   <ns1:parameter name="wsdlServiceElement" value="FachadaService"/>
   <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns12:Cliente" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.cliente.Cliente" xmlns:ns12="http://cliente.com"/>
+ </ns1:service>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
  </ns1:service>
  <ns1:service name="Version" provider="java:RPC">
   <ns1:parameter name="allowedMethods" value="getVersion"/>

@@ -11,7 +11,7 @@ import com.fachada.RepositorioCliente;
 
 public class ClienteDAO implements RepositorioCliente {
 
-	private static final String PATH = "/home/tacsio/Projects/distribuidos/Projeto/WSAccountControl/WebContent/Database/clientes.db";
+	private static final String PATH = "/home/tarcisio/Projects/distribuidos/Projeto/WSAccountControl/WebContent/Database/clientes.db";
 	private static Connection connection = null;
 
 	public Cliente consultarClienteLogin(String login) {
