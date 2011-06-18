@@ -1,0 +1,32 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from MailSenderService WSDL service -->
+
+  <service name="MailSender" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://mail"/>
+      <parameter name="wsdlServiceElement" value="MailSenderService"/>
+      <parameter name="schemaQualified" value="http://mail"/>
+      <parameter name="wsdlServicePort" value="MailSender"/>
+      <parameter name="className" value="mail.MailSenderSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="MailSender"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="send" qname="operNS:send" xmlns:operNS="http://mail" returnQName="retNS:sendReturn" xmlns:retNS="http://mail" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:to" xmlns:pns="http://mail" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:from" xmlns:pns="http://mail" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:subject" xmlns:pns="http://mail" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:msg" xmlns:pns="http://mail" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="send"/>
+
+  </service>
+</deployment>
