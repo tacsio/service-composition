@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://classificarTweet" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://classificarTweet" xmlns:intf="http://classificarTweet" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://classificarTweet" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="classificarTweet">
+    <complexType>
+     <sequence>
+      <element name="xml" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="classificarTweetResponse">
+    <complexType>
+     <sequence>
+      <element name="classificarTweetReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="classificarTweetRequest">
+
+      <wsdl:part element="impl:classificarTweet" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="classificarTweetResponse">
+
+      <wsdl:part element="impl:classificarTweetResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ClassificarTweet">
+
+      <wsdl:operation name="classificarTweet">
+
+         <wsdl:input message="impl:classificarTweetRequest" name="classificarTweetRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:classificarTweetResponse" name="classificarTweetResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ClassificarTweetSoapBinding" type="impl:ClassificarTweet">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="classificarTweet">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="classificarTweetRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="classificarTweetResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ClassificarTweetService">
+
+      <wsdl:port binding="impl:ClassificarTweetSoapBinding" name="ClassificarTweet">
+
+         <wsdlsoap:address location="http://172.20.4.219:8080/ClassificarTweetService/services/ClassificarTweet"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

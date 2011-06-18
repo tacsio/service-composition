@@ -1,0 +1,96 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="/opt/apache-tomcat-7.0.12/wtpwebapps/WSAccountControl/WEB-INF/attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:service name="WSAccountControl" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="consultarClienteLogin" qname="ns1:consultarClienteLogin" returnQName="ns1:consultarClienteLoginReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://fachada.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:login" type="xsd:string"/>
+   <ns2:parameter qname="ns1:senha" type="xsd:string"/>
+  </ns2:operation>
+  <ns1:operation name="cadastrarCliente" qname="ns2:cadastrarCliente" returnQName="ns2:cadastrarClienteReturn" returnType="xsd:string" soapAction="" xmlns:ns2="http://fachada.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:nome" type="xsd:string"/>
+   <ns1:parameter qname="ns2:login" type="xsd:string"/>
+   <ns1:parameter qname="ns2:senha" type="xsd:string"/>
+   <ns1:parameter qname="ns2:email" type="xsd:string"/>
+   <ns1:parameter qname="ns2:cpf" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="existeLogin" qname="ns3:existeLogin" returnQName="ns3:existeLoginReturn" returnType="xsd:string" soapAction="" xmlns:ns3="http://fachada.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:login" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="consultarClienteLogin existeLogin cadastrarCliente"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="WSAccountControl"/>
+  <ns1:parameter name="className" value="com.fachada.WSAccountControl"/>
+  <ns1:parameter name="wsdlServicePort" value="WSAccountControl"/>
+  <ns1:parameter name="schemaQualified" value="http://fachada.com"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://fachada.com"/>
+  <ns1:parameter name="wsdlServiceElement" value="WSAccountControlService"/>
+ </ns1:service>
+ <ns1:service name="Fachada" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="consultarClienteLogin" qname="ns4:consultarClienteLogin" returnQName="ns4:consultarClienteLoginReturn" returnType="ns5:Cliente" soapAction="" xmlns:ns4="http://fachada.com" xmlns:ns5="http://cliente.com">
+   <ns1:parameter qname="ns4:login" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="cadastrarCliente" qname="ns6:cadastrarCliente" soapAction="" xmlns:ns6="http://fachada.com">
+   <ns1:parameter qname="ns6:cliente" type="ns7:Cliente" xmlns:ns7="http://cliente.com"/>
+  </ns1:operation>
+  <ns1:operation name="existeLogin" qname="ns8:existeLogin" returnQName="ns8:existeLoginReturn" returnType="xsd:boolean" soapAction="" xmlns:ns8="http://fachada.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns8:login" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="consultarClienteLogin existeLogin cadastrarCliente"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="Fachada"/>
+  <ns1:parameter name="className" value="com.fachada.Fachada"/>
+  <ns1:parameter name="wsdlServicePort" value="Fachada"/>
+  <ns1:parameter name="schemaQualified" value="http://cliente.com,http://fachada.com"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://fachada.com"/>
+  <ns1:parameter name="wsdlServiceElement" value="FachadaService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns9:Cliente" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.cliente.Cliente" xmlns:ns9="http://cliente.com"/>
+ </ns1:service>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>

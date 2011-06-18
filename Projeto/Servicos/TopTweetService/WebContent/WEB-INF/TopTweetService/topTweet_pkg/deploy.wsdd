@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from TopTweetService WSDL service -->
+
+  <service name="TopTweet" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://topTweet"/>
+      <parameter name="wsdlServiceElement" value="TopTweetService"/>
+      <parameter name="schemaQualified" value="http://topTweet"/>
+      <parameter name="wsdlServicePort" value="TopTweet"/>
+      <parameter name="className" value="topTweet.TopTweet"/>
+      <parameter name="wsdlPortType" value="TopTweet"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://topTweet" xmlns:retNS="http://topTweet" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="topTweet" qname="operNS:topTweet" returnQName="retNS:topTweetReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://topTweet" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:xml" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="topTweet"/>
+
+  </service>
+</deployment>

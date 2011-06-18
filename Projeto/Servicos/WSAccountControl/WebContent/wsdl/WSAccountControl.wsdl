@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://fachada.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://fachada.com" xmlns:intf="http://fachada.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://fachada.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="consultarClienteLogin">
+    <complexType>
+     <sequence>
+      <element name="login" type="xsd:string"/>
+      <element name="senha" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultarClienteLoginResponse">
+    <complexType>
+     <sequence>
+      <element name="consultarClienteLoginReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cadastrarCliente">
+    <complexType>
+     <sequence>
+      <element name="nome" type="xsd:string"/>
+      <element name="login" type="xsd:string"/>
+      <element name="senha" type="xsd:string"/>
+      <element name="email" type="xsd:string"/>
+      <element name="cpf" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cadastrarClienteResponse">
+    <complexType>
+     <sequence>
+      <element name="cadastrarClienteReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="existeLogin">
+    <complexType>
+     <sequence>
+      <element name="login" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="existeLoginResponse">
+    <complexType>
+     <sequence>
+      <element name="existeLoginReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="existeLoginResponse">
+
+      <wsdl:part element="impl:existeLoginResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="cadastrarClienteResponse">
+
+      <wsdl:part element="impl:cadastrarClienteResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="existeLoginRequest">
+
+      <wsdl:part element="impl:existeLogin" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultarClienteLoginResponse">
+
+      <wsdl:part element="impl:consultarClienteLoginResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="cadastrarClienteRequest">
+
+      <wsdl:part element="impl:cadastrarCliente" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultarClienteLoginRequest">
+
+      <wsdl:part element="impl:consultarClienteLogin" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="WSAccountControl">
+
+      <wsdl:operation name="consultarClienteLogin">
+
+         <wsdl:input message="impl:consultarClienteLoginRequest" name="consultarClienteLoginRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:consultarClienteLoginResponse" name="consultarClienteLoginResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cadastrarCliente">
+
+         <wsdl:input message="impl:cadastrarClienteRequest" name="cadastrarClienteRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:cadastrarClienteResponse" name="cadastrarClienteResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="existeLogin">
+
+         <wsdl:input message="impl:existeLoginRequest" name="existeLoginRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:existeLoginResponse" name="existeLoginResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="WSAccountControlSoapBinding" type="impl:WSAccountControl">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="consultarClienteLogin">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultarClienteLoginRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultarClienteLoginResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cadastrarCliente">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cadastrarClienteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cadastrarClienteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="existeLogin">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="existeLoginRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="existeLoginResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="WSAccountControlService">
+
+      <wsdl:port binding="impl:WSAccountControlSoapBinding" name="WSAccountControl">
+
+         <wsdlsoap:address location="http://localhost:8080/WSAccountControl/services/WSAccountControl"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

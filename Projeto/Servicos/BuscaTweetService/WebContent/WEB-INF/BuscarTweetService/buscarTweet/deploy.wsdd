@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from BuscarTweetService WSDL service -->
+
+  <service name="BuscarTweet" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://buscarTweet"/>
+      <parameter name="wsdlServiceElement" value="BuscarTweetService"/>
+      <parameter name="schemaQualified" value="http://buscarTweet"/>
+      <parameter name="wsdlServicePort" value="BuscarTweet"/>
+      <parameter name="className" value="buscarTweet.BuscarTweet"/>
+      <parameter name="wsdlPortType" value="BuscarTweet"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://buscarTweet" xmlns:retNS="http://buscarTweet" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="buscaEntradaTwitter" qname="operNS:buscaEntradaTwitter" returnQName="retNS:buscaEntradaTwitterReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://buscarTweet" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:search" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="buscaEntradaTwitter"/>
+
+  </service>
+</deployment>

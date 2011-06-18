@@ -1,0 +1,40 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from WSAccountControlService WSDL service -->
+
+  <service name="WSAccountControl" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://fachada.com"/>
+      <parameter name="wsdlServiceElement" value="WSAccountControlService"/>
+      <parameter name="schemaQualified" value="http://fachada.com"/>
+      <parameter name="wsdlServicePort" value="WSAccountControl"/>
+      <parameter name="className" value="com.fachada.WSAccountControlSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="WSAccountControl"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="consultarClienteLogin" qname="operNS:consultarClienteLogin" xmlns:operNS="http://fachada.com" returnQName="retNS:consultarClienteLoginReturn" xmlns:retNS="http://fachada.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:login" xmlns:pns="http://fachada.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:senha" xmlns:pns="http://fachada.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="cadastrarCliente" qname="operNS:cadastrarCliente" xmlns:operNS="http://fachada.com" returnQName="retNS:cadastrarClienteReturn" xmlns:retNS="http://fachada.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:nome" xmlns:pns="http://fachada.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:login" xmlns:pns="http://fachada.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:senha" xmlns:pns="http://fachada.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:email" xmlns:pns="http://fachada.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:cpf" xmlns:pns="http://fachada.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="existeLogin" qname="operNS:existeLogin" xmlns:operNS="http://fachada.com" returnQName="retNS:existeLoginReturn" xmlns:retNS="http://fachada.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:login" xmlns:pns="http://fachada.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="consultarClienteLogin existeLogin cadastrarCliente"/>
+
+  </service>
+</deployment>

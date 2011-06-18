@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://buscarTweet" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://buscarTweet" xmlns:intf="http://buscarTweet" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://buscarTweet" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="buscaEntradaTwitter">
+    <complexType>
+     <sequence>
+      <element name="search" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscaEntradaTwitterResponse">
+    <complexType>
+     <sequence>
+      <element name="buscaEntradaTwitterReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="buscaEntradaTwitterRequest">
+
+      <wsdl:part element="impl:buscaEntradaTwitter" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buscaEntradaTwitterResponse">
+
+      <wsdl:part element="impl:buscaEntradaTwitterResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="BuscarTweet">
+
+      <wsdl:operation name="buscaEntradaTwitter">
+
+         <wsdl:input message="impl:buscaEntradaTwitterRequest" name="buscaEntradaTwitterRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:buscaEntradaTwitterResponse" name="buscaEntradaTwitterResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="BuscarTweetSoapBinding" type="impl:BuscarTweet">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="buscaEntradaTwitter">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buscaEntradaTwitterRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buscaEntradaTwitterResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="BuscarTweetService">
+
+      <wsdl:port binding="impl:BuscarTweetSoapBinding" name="BuscarTweet">
+
+         <wsdlsoap:address location="http://172.20.4.219:8080/BuscaTweetService/services/BuscarTweet"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
