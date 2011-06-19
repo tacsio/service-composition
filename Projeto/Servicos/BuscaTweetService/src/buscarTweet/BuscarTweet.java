@@ -13,10 +13,9 @@ public class BuscarTweet {
 
 	public String buscaEntradaTwitter(String search) {
 		String retorno = "";
-		//System.out.println("ENTROU BUSCAR TWITTER");
+		System.out.println("BuscaTweet Request Received");
 
 		try {
-			System.out.println(String.format(TWITTER_SEARCH_URL, QUANTIDADE_TWITTER, search));
 			URL url = new URL(String.format(TWITTER_SEARCH_URL, QUANTIDADE_TWITTER, search));
 
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();

@@ -23,7 +23,7 @@ public class TopTweet {
 		List<TweetEntry> tweetEntries = new ArrayList<TweetEntry>();
 		Map<String, Integer> tweets = new HashMap<String, Integer>();
 
-		//System.out.println("ENTROU TOP TWEET");
+		System.out.println("TopTweet Request Received");
 		try {
 //			File file = new File("tempTop.xml");
 //			FileWriter fileWriter = new FileWriter(file);

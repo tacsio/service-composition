@@ -14,7 +14,7 @@ public class WSAccountControl implements RepositorioCliente{
 		return repositorio.consultarClienteLogin(login, senha);
 	}
 
-	public String cadastrarCliente(String nome, String login, String senha, String email, int cpf) {
+	public String cadastrarCliente(String nome, String login, String senha, String email, String cpf) {
 		return repositorio.cadastrarCliente(nome, login, senha, email, cpf);
 	}
 

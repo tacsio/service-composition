@@ -6,9 +6,9 @@ public class Cliente {
 	private String login;
 	private String senha;
 	private String email;
-	private int cpf;
+	private String cpf;
 	
-	public Cliente(String nome, String login, String senha, String email, int cpf) {
+	public Cliente(String nome, String login, String senha, String email, String cpf) {
 		super();
 		this.nome = nome;
 		this.login = login;
@@ -19,11 +19,11 @@ public class Cliente {
 	
 	public Cliente() {}
 	
-	public int getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(int cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 

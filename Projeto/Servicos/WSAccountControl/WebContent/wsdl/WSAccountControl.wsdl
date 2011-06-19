@@ -26,7 +26,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
       <element name="login" type="xsd:string"/>
       <element name="senha" type="xsd:string"/>
       <element name="email" type="xsd:string"/>
-      <element name="cpf" type="xsd:int"/>
+      <element name="cpf" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>

@@ -23,7 +23,7 @@ public class ClassificarTweet {
 
 	public static String classificarTweet(String xml){
 		List<TweetEntry> tweetEntries = new ArrayList<TweetEntry>();
-		//System.out.println("ENTROU CLASSIFICAR TWEET");
+		System.out.println("ClassificarTweet Request Received");
 
 		try {
 //			File file = new File("NewFile.xml");

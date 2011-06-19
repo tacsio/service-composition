@@ -11,7 +11,7 @@ import com.fachada.RepositorioCliente;
 
 public class ClienteDAO implements RepositorioCliente {
 
-	private static final String PATH = "/home/tarcisio/Projects/distribuidos/Projeto/WSAccountControl/WebContent/Database/clientes.db";
+	private static final String PATH = "/home/tacsio/Projects/distribuidos/Projeto/Servicos/WSAccountControl/WebContent/clientes.db";
 	private static Connection connection = null;
 
 	public String consultarClienteLogin(String login, String senha) {
@@ -40,7 +40,7 @@ public class ClienteDAO implements RepositorioCliente {
 				cliente.setEmail(result.getString("email"));
 				cliente.setLogin(result.getString("login"));
 				cliente.setSenha(result.getString("senha"));
-				cliente.setCpf(result.getInt("cpf"));
+				cliente.setCpf(result.getString("cpf"));
 			}
 
 		} catch (SQLException e) {
@@ -62,7 +62,7 @@ public class ClienteDAO implements RepositorioCliente {
 		return retorno;
 	}
 
-	public String cadastrarCliente(String nome, String login, String senha, String email, int cpf) {
+	public String cadastrarCliente(String nome, String login, String senha, String email, String cpf) {
 
 		int index = 0;
 		boolean retorno = false;
@@ -79,7 +79,7 @@ public class ClienteDAO implements RepositorioCliente {
 			preparedStatement.setString(++index, login);
 			preparedStatement.setString(++index, senha);
 			preparedStatement.setString(++index, email);
-			preparedStatement.setInt(++index, cpf);
+			preparedStatement.setString(++index, cpf);
 
 			preparedStatement.execute();
 			retorno = true;
@@ -134,6 +134,7 @@ public class ClienteDAO implements RepositorioCliente {
 
 	private static Connection getConnection() {
 
+		System.out.println("AccountControl Request Received");
 		try {
 			Class.forName("org.sqlite.JDBC");
 			connection = DriverManager.getConnection("jdbc:sqlite:" + PATH);

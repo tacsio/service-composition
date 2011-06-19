@@ -13,9 +13,10 @@ public class MailSender {
 	
 	public String send(String to, String from, String subject, String msg){
 		try {
+			System.out.println("Webmail Request Received");
 			email.setSSL(true);
 			email.setSmtpPort(465);
-			email.setAuthentication("", "");//PARAMETROS (CONTA_EMAIL, SENHA)
+			email.setAuthentication("tacsioo@gmail.com", "qwe12345**");//PARAMETROS (CONTA_EMAIL, SENHA)
 			email.addTo(to);
 			email.setFrom(from);
 			email.setSubject(subject);
