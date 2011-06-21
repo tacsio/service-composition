@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy xmlns="http://www.apache.org/ode/schemas/dd/2007/03" xmlns:ValidatorDemo="http://www.mathertel.de/ValidatorDemo/" xmlns:fachada.com="http://fachada.com" xmlns:mail="http://mail" xmlns:main.localhost="http://main.localhost" xmlns:webservices="http://www.crownodonto.com.br/webservices/" xmlns:ws="http://www.taryatechnologies.com/ws">
+  <process name="main.localhost:WSCliente">
+    <active>true</active>
+    <retired>false</retired>
+    <in-memory>true</in-memory>
+    <process-events generate="all"/>
+    <provide partnerLink="client">
+      <service name="main.localhost:WSCliente" port="WSClientePort"/>
+    </provide>
+    <invoke partnerLink="Acc">
+      <service name="fachada.com:WSAccountControlService" port="WSAccountControl"/>
+    </invoke>
+    <invoke partnerLink="SendMail">
+      <service name="mail:MailSenderService" port="MailSender"/>
+    </invoke>
+    <invoke partnerLink="gerarHash">
+      <service name="ws:HashValue" port="HashValueSoap"/>
+    </invoke>
+    <invoke partnerLink="validacpf">
+      <service name="webservices:Valida" port="ValidaSoap"/>
+    </invoke>
+    <invoke partnerLink="validaemail">
+      <service name="ValidatorDemo:ValidatorDemo" port="ValidatorDemoSoap"/>
+    </invoke>
+  </process>
+</deploy>

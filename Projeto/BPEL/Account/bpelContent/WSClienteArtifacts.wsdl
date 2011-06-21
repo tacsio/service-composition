@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:p="http://www.w3.org/2001/XMLSchema" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://main.localhost" xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" xmlns:wsdl="http://fachada.com" xmlns:wsdl1="http://mail" xmlns:wsdl2="http://www.taryatechnologies.com/ws" xmlns:wsdl3="http://www.crownodonto.com.br/webservices/" xmlns:wsdl4="http://www.mathertel.de/ValidatorDemo/" name="WSCliente" targetNamespace="http://main.localhost">
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     TYPE DEFINITION - List of types participating in this BPEL process 
+     The BPEL Designer will generate default request and response types
+     but you can define or import any XML Schema type and use them as part 
+     of the message types.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+    <plnk:partnerLinkType name="Acc">
+    <plnk:role name="AccRole" portType="wsdl:WSAccountControl"/>
+  </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="SendMail">
+    <plnk:role name="SendMailRole" portType="wsdl1:MailSender"/>
+  </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="gerarHash">
+    <plnk:role name="gerarHashRole" portType="wsdl2:HashValueSoap"/>
+  </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="validacpf">
+    <plnk:role name="validacpfrole" portType="wsdl3:ValidaSoap"/>
+  </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="validaemail">
+    <plnk:role name="validaemailrole" portType="wsdl4:ValidatorDemoSoap"/>
+  </plnk:partnerLinkType>
+    <import location="WSAccountControl.wsdl" namespace="http://fachada.com"/>
+    <import location="MailSender.wsdl" namespace="http://mail"/>
+    <import location="HashValues.wsdl" namespace="http://www.taryatechnologies.com/ws"/>
+    <import location="valida_cpf.wsdl" namespace="http://www.crownodonto.com.br/webservices/"/>
+    <import location="validar_email.wsdl" namespace="http://www.mathertel.de/ValidatorDemo/"/>
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://main.localhost">
+
+            <element name="logar">
+                <complexType>
+                    <sequence>
+                    	<element name="login" type="string"/>
+                    	<element name="senha" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+
+            <element name="logarResponse">
+                <complexType>
+                    <sequence>
+                        <element name="result" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="cadastar">
+            	<complexType>
+            		<sequence>
+            			<element name="nome" type="string"/>
+            			<element name="login" type="string"/>
+            			<element name="senha" type="string"/>
+            			<element name="email" type="string"/>
+            			<element name="cpf" type="string"/>
+            		</sequence>
+            	</complexType>
+            </element>
+            <element name="cadastarResponse">
+            	<complexType>
+            		<sequence>
+            			<element name="out" type="string"/>
+            		</sequence>
+            	</complexType>
+            </element>
+        </schema>
+    </types>
+
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     MESSAGE TYPE DEFINITION - Definition of the message types used as 
+     part of the port type defintions
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+    <message name="logarRequestMessage">
+        <part element="tns:logar" name="payload"/>
+    </message>
+    <message name="logarResponseMessage">
+        <part element="tns:logarResponse" name="payload"/>
+    </message>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     PORT TYPE DEFINITION - A port type groups a set of operations into
+     a logical service unit.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+
+    <!-- portType implemented by the WSCliente BPEL process -->
+    <message name="cadastarRequest">
+    	<part element="tns:cadastar" name="parameters"/>
+    </message>
+    <message name="cadastarResponse">
+    	<part element="tns:cadastarResponse" name="parameters"/>
+    </message>
+    <portType name="WSCliente">
+        <operation name="logar">
+            <input message="tns:logarRequestMessage"/>
+            <output message="tns:logarResponseMessage"/>
+        </operation>
+        <operation name="cadastar">
+        	<input message="tns:cadastarRequest"/>
+        	<output message="tns:cadastarResponse"/>
+        </operation>
+    </portType>   
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     PARTNER LINK TYPE DEFINITION
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+    <plnk:partnerLinkType name="WSCliente">
+        <plnk:role name="WSClienteProvider" portType="tns:WSCliente"/>
+    </plnk:partnerLinkType>
+    
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     BINDING DEFINITION - Defines the message format and protocol details
+     for a web service.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <binding name="WSClienteBinding" type="tns:WSCliente">
+    	<soap:binding style="document"
+    		transport="http://schemas.xmlsoap.org/soap/http" />
+    	<operation name="logar">
+    		<soap:operation soapAction="http://main.localhost/process" />
+    		<input>
+    			<soap:body use="literal" />
+    		</input>
+    		<output>
+    			<soap:body use="literal" />
+    		</output>
+    	</operation>
+    	<operation name="cadastar">
+    		<soap:operation soapAction="http://main.localhost/cadastar" />
+    		<input>
+    			<soap:body use="literal" />
+    		</input>
+    		<output>
+    			<soap:body use="literal" />
+    		</output>
+    	</operation>
+    </binding>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     SERVICE DEFINITION - A service groups a set of ports into
+     a service unit.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <service name="WSCliente">
+    	<port binding="tns:WSClienteBinding" name="WSClientePort">
+    		<soap:address location="http://localhost:8080/ode/processes/WSCliente"/>
+    	</port>
+    </service>
+</definitions>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.crownodonto.com.br/webservices/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.crownodonto.com.br/webservices/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.crownodonto.com.br/webservices/">
+      <s:element name="valida_cpf">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cpf" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="valida_cpfResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="valida_cpfResult" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="valida_cnpj">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cgc" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="valida_cnpjResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="valida_cnpjResult" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string"/>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="valida_cpfSoapIn">
+    <wsdl:part name="parameters" element="tns:valida_cpf"/>
+  </wsdl:message>
+  <wsdl:message name="valida_cpfSoapOut">
+    <wsdl:part name="parameters" element="tns:valida_cpfResponse"/>
+  </wsdl:message>
+  <wsdl:message name="valida_cnpjSoapIn">
+    <wsdl:part name="parameters" element="tns:valida_cnpj"/>
+  </wsdl:message>
+  <wsdl:message name="valida_cnpjSoapOut">
+    <wsdl:part name="parameters" element="tns:valida_cnpjResponse"/>
+  </wsdl:message>
+  <wsdl:message name="valida_cpfHttpGetIn">
+    <wsdl:part name="cpf" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="valida_cpfHttpGetOut">
+    <wsdl:part name="Body" element="tns:string"/>
+  </wsdl:message>
+  <wsdl:message name="valida_cnpjHttpGetIn">
+    <wsdl:part name="cgc" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="valida_cnpjHttpGetOut">
+    <wsdl:part name="Body" element="tns:string"/>
+  </wsdl:message>
+  <wsdl:message name="valida_cpfHttpPostIn">
+    <wsdl:part name="cpf" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="valida_cpfHttpPostOut">
+    <wsdl:part name="Body" element="tns:string"/>
+  </wsdl:message>
+  <wsdl:message name="valida_cnpjHttpPostIn">
+    <wsdl:part name="cgc" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="valida_cnpjHttpPostOut">
+    <wsdl:part name="Body" element="tns:string"/>
+  </wsdl:message>
+  <wsdl:portType name="ValidaSoap">
+    <wsdl:operation name="valida_cpf">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">CPF válido retorna o CPF sem .,-/ CPF inválido retorna 0 Copyright © 2002 Bronze &amp; Business</wsdl:documentation>
+      <wsdl:input message="tns:valida_cpfSoapIn"/>
+      <wsdl:output message="tns:valida_cpfSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="valida_cnpj">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">CNPJ válido retorna o CNPJ sem .,-/ CNPJ inválido retorna 0 Copyright © 2002 Bronze &amp; Business</wsdl:documentation>
+      <wsdl:input message="tns:valida_cnpjSoapIn"/>
+      <wsdl:output message="tns:valida_cnpjSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ValidaHttpGet">
+    <wsdl:operation name="valida_cpf">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">CPF válido retorna o CPF sem .,-/ CPF inválido retorna 0 Copyright © 2002 Bronze &amp; Business</wsdl:documentation>
+      <wsdl:input message="tns:valida_cpfHttpGetIn"/>
+      <wsdl:output message="tns:valida_cpfHttpGetOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="valida_cnpj">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">CNPJ válido retorna o CNPJ sem .,-/ CNPJ inválido retorna 0 Copyright © 2002 Bronze &amp; Business</wsdl:documentation>
+      <wsdl:input message="tns:valida_cnpjHttpGetIn"/>
+      <wsdl:output message="tns:valida_cnpjHttpGetOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ValidaHttpPost">
+    <wsdl:operation name="valida_cpf">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">CPF válido retorna o CPF sem .,-/ CPF inválido retorna 0 Copyright © 2002 Bronze &amp; Business</wsdl:documentation>
+      <wsdl:input message="tns:valida_cpfHttpPostIn"/>
+      <wsdl:output message="tns:valida_cpfHttpPostOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="valida_cnpj">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">CNPJ válido retorna o CNPJ sem .,-/ CNPJ inválido retorna 0 Copyright © 2002 Bronze &amp; Business</wsdl:documentation>
+      <wsdl:input message="tns:valida_cnpjHttpPostIn"/>
+      <wsdl:output message="tns:valida_cnpjHttpPostOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ValidaSoap" type="tns:ValidaSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="valida_cpf">
+      <soap:operation soapAction="http://www.crownodonto.com.br/webservices/valida_cpf" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="valida_cnpj">
+      <soap:operation soapAction="http://www.crownodonto.com.br/webservices/valida_cnpj" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ValidaSoap12" type="tns:ValidaSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="valida_cpf">
+      <soap12:operation soapAction="http://www.crownodonto.com.br/webservices/valida_cpf" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="valida_cnpj">
+      <soap12:operation soapAction="http://www.crownodonto.com.br/webservices/valida_cnpj" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ValidaHttpGet" type="tns:ValidaHttpGet">
+    <http:binding verb="GET"/>
+    <wsdl:operation name="valida_cpf">
+      <http:operation location="/valida_cpf"/>
+      <wsdl:input>
+        <http:urlEncoded/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="valida_cnpj">
+      <http:operation location="/valida_cnpj"/>
+      <wsdl:input>
+        <http:urlEncoded/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ValidaHttpPost" type="tns:ValidaHttpPost">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="valida_cpf">
+      <http:operation location="/valida_cpf"/>
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="valida_cnpj">
+      <http:operation location="/valida_cnpj"/>
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Valida">
+    <wsdl:port name="ValidaSoap" binding="tns:ValidaSoap">
+      <soap:address location="http://www.bronzebusiness.com.br/webservices/valida.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="ValidaSoap12" binding="tns:ValidaSoap12">
+      <soap12:address location="http://www.bronzebusiness.com.br/webservices/valida.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="ValidaHttpGet" binding="tns:ValidaHttpGet">
+      <http:address location="http://www.bronzebusiness.com.br/webservices/valida.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="ValidaHttpPost" binding="tns:ValidaHttpPost">
+      <http:address location="http://www.bronzebusiness.com.br/webservices/valida.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
