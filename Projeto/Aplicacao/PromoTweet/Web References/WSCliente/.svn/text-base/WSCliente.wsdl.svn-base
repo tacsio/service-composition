@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" xmlns:tns="http://main.localhost" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:wsdl1="http://mail" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:p="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsdl4="http://www.mathertel.de/ValidatorDemo/" xmlns:wsdl3="http://www.crownodonto.com.br/webservices/" xmlns:wsdl2="http://www.taryatechnologies.com/ws" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns1="http://fachada.com" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns0="http://mail" targetNamespace="http://main.localhost" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <p:schema xmlns:wsdl="http://fachada.com" xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://main.localhost">
+      <p:element name="logar">
+        <p:complexType>
+          <p:sequence>
+            <p:element name="login" type="p:string" />
+            <p:element name="senha" type="p:string" />
+          </p:sequence>
+        </p:complexType>
+      </p:element>
+      <p:element name="logarResponse">
+        <p:complexType>
+          <p:sequence>
+            <p:element name="result" type="p:string" />
+          </p:sequence>
+        </p:complexType>
+      </p:element>
+      <p:element name="cadastar">
+        <p:complexType>
+          <p:sequence>
+            <p:element name="nome" type="p:string" />
+            <p:element name="login" type="p:string" />
+            <p:element name="senha" type="p:string" />
+            <p:element name="email" type="p:string" />
+            <p:element name="cpf" type="p:string" />
+          </p:sequence>
+        </p:complexType>
+      </p:element>
+      <p:element name="cadastarResponse">
+        <p:complexType>
+          <p:sequence>
+            <p:element name="out" type="p:string" />
+          </p:sequence>
+        </p:complexType>
+      </p:element>
+    </p:schema>
+    <s:schema xmlns:tns="http://www.crownodonto.com.br/webservices/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.crownodonto.com.br/webservices/" xmlns:s="http://www.w3.org/2001/XMLSchema">
+      <s:element name="valida_cpf">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" name="cpf" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="valida_cpfResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" name="valida_cpfResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="valida_cnpj">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" name="cgc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="valida_cnpjResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" name="valida_cnpjResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+    <s:schema xmlns:tns="http://www.mathertel.de/ValidatorDemo/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.mathertel.de/ValidatorDemo/" xmlns:s="http://www.w3.org/2001/XMLSchema">
+      <s:element name="ValidateEMail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" name="emailAddress" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateEMailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="ValidateEMailResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="boolean" type="s:boolean" />
+    </s:schema>
+    <s:schema xmlns:tns="http://www.taryatechnologies.com/ws" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.taryatechnologies.com/ws" xmlns:s="http://www.w3.org/2001/XMLSchema">
+      <s:element name="GetMD5HashValue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" name="strText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMD5HashValueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" name="GetMD5HashValueResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSHA1HashValue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" name="strText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSHA1HashValueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" name="GetSHA1HashValueResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+    <xsd:schema xmlns:intf="http://mail" xmlns:impl="http://mail" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://mail" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="send">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="to" type="xsd:string" />
+            <xsd:element name="from" type="xsd:string" />
+            <xsd:element name="subject" type="xsd:string" />
+            <xsd:element name="msg" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="sendResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="sendReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+    <xsd:schema xmlns:intf="http://fachada.com" xmlns:impl="http://fachada.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://fachada.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="consultarClienteLogin">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="login" type="xsd:string" />
+            <xsd:element name="senha" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="consultarClienteLoginResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="consultarClienteLoginReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="cadastrarCliente">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="nome" type="xsd:string" />
+            <xsd:element name="login" type="xsd:string" />
+            <xsd:element name="senha" type="xsd:string" />
+            <xsd:element name="email" type="xsd:string" />
+            <xsd:element name="cpf" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="cadastrarClienteResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="cadastrarClienteReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="existeLogin">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="login" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="existeLoginResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="existeLoginReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="cadastarRequest">
+    <wsdl:part name="parameters" element="tns:cadastar" />
+  </wsdl:message>
+  <wsdl:message name="cadastarResponse">
+    <wsdl:part name="parameters" element="tns:cadastarResponse" />
+  </wsdl:message>
+  <wsdl:message name="logarRequestMessage">
+    <wsdl:part name="payload" element="tns:logar" />
+  </wsdl:message>
+  <wsdl:message name="logarResponseMessage">
+    <wsdl:part name="payload" element="tns:logarResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WSClientePortType">
+    <wsdl:operation name="cadastar">
+      <wsdl:input wsaw:Action="http://main.localhost/cadastar" message="tns:cadastarRequest" />
+      <wsdl:output wsaw:Action="http://main.localhost/WSCliente/cadastarResponse" message="tns:cadastarResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="logar">
+      <wsdl:input wsaw:Action="http://main.localhost/process" message="tns:logarRequestMessage" />
+      <wsdl:output wsaw:Action="http://main.localhost/WSCliente/logarResponse" message="tns:logarResponseMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSClienteSOAP11Binding" type="tns:WSClientePortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="cadastar">
+      <soap:operation soapAction="http://main.localhost/cadastar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logar">
+      <soap:operation soapAction="http://main.localhost/process" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSClienteSOAP12Binding" type="tns:WSClientePortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="cadastar">
+      <soap12:operation soapAction="http://main.localhost/cadastar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logar">
+      <soap12:operation soapAction="http://main.localhost/process" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSClienteHttpBinding" type="tns:WSClientePortType">
+    <http:binding verb="POST" />
+    <wsdl:operation name="cadastar">
+      <http:operation location="WSCliente/cadastar" />
+      <wsdl:input>
+        <mime:content part="cadastar" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="cadastar" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logar">
+      <http:operation location="WSCliente/logar" />
+      <wsdl:input>
+        <mime:content part="logar" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="logar" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSCliente">
+    <wsdl:port name="WSClienteSOAP11port_http" binding="tns:WSClienteSOAP11Binding">
+      <soap:address location="http://localhost:8080/ode/processes/WSCliente" />
+    </wsdl:port>
+    <wsdl:port name="WSClienteSOAP12port_http" binding="tns:WSClienteSOAP12Binding">
+      <soap12:address location="http://localhost:8080/ode/processes/WSCliente" />
+    </wsdl:port>
+    <wsdl:port name="WSClienteHttpport" binding="tns:WSClienteHttpBinding">
+      <http:address location="http://localhost:8080/ode/processes/WSCliente" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

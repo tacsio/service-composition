@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" xmlns:tns="http://service.twitter" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:wsdl1="http://topTweet" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl2="http://classificarTweet" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:ns2="http://buscarTweet" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns0="http://classificarTweet" xmlns:ns1="http://topTweet" targetNamespace="http://service.twitter" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <schema xmlns:wsdl="http://buscarTweet" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://service.twitter" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="twitterRequest">
+        <complexType>
+          <sequence>
+            <element name="input" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="twitterResponse">
+        <complexType>
+          <sequence>
+            <element name="result" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+    </schema>
+    <xsd:schema xmlns:intf="http://classificarTweet" xmlns:impl="http://classificarTweet" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://classificarTweet" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="classificarTweet">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="xml" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="classificarTweetResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="classificarTweetReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+    <xsd:schema xmlns:intf="http://topTweet" xmlns:impl="http://topTweet" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://topTweet" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="topTweet">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="xml" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="topTweetResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="topTweetReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+    <xsd:schema xmlns:intf="http://buscarTweet" xmlns:impl="http://buscarTweet" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://buscarTweet" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="buscaEntradaTwitter">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="search" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="buscaEntradaTwitterResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="buscaEntradaTwitterReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="twitterRequestMessage">
+    <wsdl:part name="payload" element="tns:twitterRequest" />
+  </wsdl:message>
+  <wsdl:message name="twitterResponseMessage">
+    <wsdl:part name="payload" element="tns:twitterResponse" />
+  </wsdl:message>
+  <wsdl:portType name="twitterPortType">
+    <wsdl:operation name="process">
+      <wsdl:input wsaw:Action="http://service.twitter/process" message="tns:twitterRequestMessage" />
+      <wsdl:output wsaw:Action="http://service.twitter/twitter/processResponse" message="tns:twitterResponseMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="twitterSOAP11Binding" type="tns:twitterPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="process">
+      <soap:operation soapAction="http://service.twitter/process" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="twitterSOAP12Binding" type="tns:twitterPortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="process">
+      <soap12:operation soapAction="http://service.twitter/process" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="twitterHttpBinding" type="tns:twitterPortType">
+    <http:binding verb="POST" />
+    <wsdl:operation name="process">
+      <http:operation location="twitter/process" />
+      <wsdl:input>
+        <mime:content part="process" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="process" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="twitter">
+    <wsdl:port name="twitterSOAP11port_http" binding="tns:twitterSOAP11Binding">
+      <soap:address location="http://localhost:8080/ode/processes/twitter" />
+    </wsdl:port>
+    <wsdl:port name="twitterSOAP12port_http" binding="tns:twitterSOAP12Binding">
+      <soap12:address location="http://localhost:8080/ode/processes/twitter" />
+    </wsdl:port>
+    <wsdl:port name="twitterHttpport" binding="tns:twitterHttpBinding">
+      <http:address location="http://localhost:8080/ode/processes/twitter" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

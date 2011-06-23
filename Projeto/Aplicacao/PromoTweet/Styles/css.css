@@ -1,0 +1,156 @@
+﻿body
+{
+    background-color:White;
+}
+
+a 
+{
+    font-weight:bold;
+    color:Teal;
+}
+
+
+a:link
+{
+      text-decoration:none;  
+}
+
+a:hover
+{
+    text-decoration:underline;
+}
+
+li
+{
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+    padding-right:3px;
+    font-family: Arial,"Helvetica Neue",sans-serif
+}
+
+li:hover
+{
+   background-color:#DEEFF6;
+   cursor:pointer;
+}
+
+li a 
+{
+    color:Teal; 
+    text-decoration: none;
+    font-family: Arial,"Helvetica Neue",sans-serif;
+    font-size: 14px;
+    font-weight:bold;
+}
+
+li a:hover
+{
+    text-decoration: underline;
+}
+
+input:focus {
+    outline: none;
+    outline-width: 0;
+    outline-color: Red;
+    border: none;
+}
+
+#divTudo
+{
+    background-color:rgb(222,239,246);
+    border:1px solid #ACE;
+    width:1000px;
+    height:900px;
+    margin: 0 auto 0 auto;
+    margin-top:25px;
+    padding-bottom:25px;
+    overflow:hidden;
+    display:block;
+       
+}
+
+#TextBoxSearch
+{
+    margin-bottom:24px;
+    background-image:url('../Imagens/campoSearch4.png');
+    padding-left:10px;
+}
+
+
+.conteudo
+{
+    display:block;
+    text-align:center;
+    float:left;
+    width:270px; 
+    height:400px;
+    font-family:Calibri;
+    padding:0 28px 0 28px;
+    max-height:400px;
+}
+
+.linksTweet
+{
+    color:Black; 
+    text-decoration: none;
+    font-family:Arial,"Helvetica Neue",sans-serif;
+    text-align: left;
+    font-size: 14px;
+    font-weight:bold;
+}
+
+.linksTweet:hover
+{
+    color:Black; 
+    text-decoration: underline;
+    font-family:Arial,"Helvetica Neue",sans-serif;
+    text-align: left;
+    font-size: 14px;
+    font-weight:bold;
+}
+
+.tweetBox 
+{
+    width:262px;
+    padding-left: 4px;
+    padding-bottom:15px;
+    font-family:Arial,"Helvetica Neue",sans-serif;
+    font-size:13px;
+    text-align:left;
+}
+
+.tweetBox:hover
+{
+   background-color:#DEEFF6;
+}
+
+.tweetContainer 
+{
+    background-color:White;
+    overflow:scroll;
+    overflow-x:hidden;
+     width:280px;
+    max-height:400px;
+}
+
+.tweetContainer:hover
+{
+    overflow:scroll;
+    overflow-x:hidden;
+    width:280px;
+}
+
+.topPromotions 
+{
+    width:280px;
+    height:360px;
+    overflow:auto;
+    font-size:13px;
+    text-align:left;
+    font-family:Arial,"Helvetica Neue",sans-serif;
+}
+
+#divLogar
+{
+    border:3px dotted blue;
+}
